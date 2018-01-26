@@ -7,26 +7,33 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Agance de Voyages</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name') }}</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/icomoon.css">
-	<link rel="stylesheet" href="css/owl.carousel.css">
-	<link rel="stylesheet" href="css/bootstrap-select.css">
-	<link rel="stylesheet" href="css/scrollbar.css">
-	<link rel="stylesheet" href="css/jquery.mmenu.all.css">
-	<link rel="stylesheet" href="css/prettyPhoto.css">
-	<link rel="stylesheet" href="css/transitions.css">
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/color.css">
-	<link rel="stylesheet" href="css/responsive.css">
-	<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+	<link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/icomoon.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/scrollbar.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/jquery.mmenu.all.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/prettyPhoto.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/transitions.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/color.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+    <script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+		]) !!};
+    </script>
 </head>
-<body class="tg-home tg-homevone">
+<body class="tg-home tg-homevone {{ !Auth::user() ? '': 'tg-login' }}">
 	<!--[if lt IE 8]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
@@ -260,28 +267,46 @@
 					</div>
 					<div class="tg-navigationarea tg-headerfixed">
 						<strong class="tg-logo"><a href="index-2.html"><img src="images/logo.png" alt="company logo here"></a></strong>
+						
 						<div class="tg-socialsignin">
+						
 							<ul class="tg-socialicons">
 								<li><a href="javascript:void(0);"><i class="icon-facebook-logo-outline"></i></a></li>
 								<li><a href="javascript:void(0);"><i class="icon-instagram-social-outlined-logo"></i></a></li>
 								<li><a href="javascript:void(0);"><i class="icon-twitter-social-outlined-logo"></i></a></li>
 							</ul>
+							@if (Auth::guest())
 							<div class="tg-userbox">
 								<a id="tg-btnsignin" class="tg-btn" href="#tg-loginsingup"><span>sign in</span></a>
+							</div>
+						
+						@else
+						
+							<div class="tg-userbox">
 								<div class="dropdown tg-dropdown">
 									<button class="tg-btndropdown" id="tg-dropdowndashboard" type="button" data-toggle="dropdown">
 										<img src="images/author/img-01.jpg" alt="image description">
-										<span>john smith</span>
+										<span>{{ Auth::user()->name }}</span>
 										<i class="fa fa-caret-down"></i>
 									</button>
 									<ul class="dropdown-menu tg-dropdownusermenu" aria-labelledby="tg-dropdowndashboard">
 										<li><a href="dashboard.html">Dashboard</a></li>
 										<li><a href="dashboard.html">Edit Profile</a></li>
-										<li><a href="javascript:void(0);">Sign Out</a></li>
+										<li>
+										<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a></li>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
 									</ul>
 								</div>
 							</div>
+						@endif
 						</div>
+						
+
 						<nav id="tg-nav" class="tg-nav">
 							<div class="navbar-header">
 								<a href="#menu" class="navbar-toggle collapsed">
@@ -532,7 +557,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<p>Copyright &copy; 2017 Travlu. All  rights reserved</p>
+							<p>Copyright &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved</p>
 						</div>
 					</div>
 				</div>
@@ -594,10 +619,11 @@
 	<!--************************************
 			Search End
 	*************************************-->
+	@if (Auth::guest())
 	<!--************************************
 			Login Singup Start
 	*************************************-->
-	<div id="tg-loginsingup" class="tg-loginsingup" data-vide-bg="poster: images/singup-img.jpg" data-vide-options="position: 0% 50%">
+	<div id="tg-loginsingup" class="tg-loginsingup {{ $errors->has('email') ? 'open' : ''}}" data-vide-bg="poster: images/singup-img.jpg" data-vide-options="position: 0% 50%">
 		<div class="tg-contentarea tg-themescrollbar">
 			<div class="tg-scrollbar">
 				<button type="button" class="close">x</button>
@@ -606,74 +632,91 @@
 						<ul>
 							<li><a href="#">About Us</a></li>
 							<li><a href="#">Contact Us</a></li>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">My Wishlist</a></li>
 						</ul>
 					</nav>
 					<div class="tg-themetabs">
 						<ul class="tg-navtbs" role="tablist">
-							<li role="presentation" class="active"><a href="#home" data-toggle="tab">Already Registered</a></li>
-							<li role="presentation"><a href="#profile" data-toggle="tab">New to Travleu ?</a></li>
+							<li role="presentation" class="active"><a href="#home" data-toggle="tab">Connextion</a></li>
+							<li role="presentation"><a href="#profile" data-toggle="tab">Inscription</a></li>
 						</ul>
 						<div class="tg-tabcontent tab-content">
 							<div role="tabpanel" class="tab-pane active fade in" id="home">
-								<form class="tg-formtheme tg-formlogin">
+								<form class="tg-formtheme tg-formlogin" role="form" method="POST" action="{{ route('login') }}" id="connection-form">
+									{{ csrf_field() }}
 									<fieldset>
 										<div class="form-group">
-											<label>Name or Email <sup>*</sup></label>
-											<input type="text" name="firstname" class="form-control" placeholder="">
+											<label>Email <sup>*</sup></label>
+											<input type="text" name="email" class="form-control" placeholder="" value="{{ old('email') }}" required>
+											@if ($errors->has('email'))
+												<span class="help-block">
+													<strong>{{ $errors->first('email') }}</strong>
+												</span>
+											@endif
 										</div>
 										<div class="form-group">
 											<label>Password <sup>*</sup></label>
-											<input type="password" name="password" class="form-control" placeholder="">
+											<input type="password" name="password" class="form-control" placeholder="" required>
+											@if ($errors->has('password'))
+												<span class="help-block">
+													<strong>{{ $errors->first('password') }}</strong>
+												</span>
+											@endif
 										</div>
 										<div class="form-group">
 											<div class="tg-checkbox">
-												<input type="checkbox" name="remember" id="rememberpass">
+												<input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} id="rememberpass">
 												<label for="rememberpass">Remember Me</label>
 											</div>
-											<span><a href="#">Lost your password?</a></span>
+											<span><a href="{{ route('password.request') }}">Lost your password?</a></span>
 										</div>
-										<button class="tg-btn tg-btn-lg"><span>update profile</span></button>
+										<button class="tg-btn tg-btn-lg">
+											<span>Connection</span>
+										</button>
 									</fieldset>
 								</form>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="profile">
-								<form class="tg-formtheme tg-formlogin">
+								<form class="tg-formtheme tg-formlogin"role="form" method="POST" action="{{ route('register') }}">
+										{{ csrf_field() }}
 									<fieldset>
 										<div class="form-group">
-											<label>Name or Email <sup>*</sup></label>
-											<input type="text" name="firstname" class="form-control" placeholder="">
+											<label>Name<sup>*</sup></label>
+											<input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+											@if ($errors->has('name'))
+												<span class="help-block">
+													<strong>{{ $errors->first('name') }}</strong>
+												</span>
+											@endif
+										</div>
+										<div class="form-group">
+											<label>Name<sup>*</sup></label>
+											<input type="text" name="email" class="form-control" value="{{ old('email') }}" required>
+											@if ($errors->has('email'))
+												<span class="help-block">
+													<strong>{{ $errors->first('email') }}</strong>
+												</span>
+											@endif
 										</div>
 										<div class="form-group">
 											<label>Password <sup>*</sup></label>
-											<input type="password" name="password" class="form-control" placeholder="">
+											<input type="password" name="password" class="form-control" placeholder="" required>
+											@if ($errors->has('password'))
+												<span class="help-block">
+													<strong>{{ $errors->first('password') }}</strong>
+												</span>
+											@endif
 										</div>
 										<div class="form-group">
 											<label>Confirm Password <sup>*</sup></label>
-											<input type="password" name="password" class="form-control" placeholder="">
+											<input type="password" name="password_confirmation" class="form-control" placeholder="" required>
 										</div>
-										<div class="form-group">
-											<div class="tg-checkbox">
-												<input type="checkbox" name="remember" id="remember">
-												<label for="remember">Remember Me</label>
-											</div>
-											<span><a href="#">Lost your password?</a></span>
-										</div>
-										<button class="tg-btn tg-btn-lg"><span>update profile</span></button>
+										<button class="tg-btn tg-btn-lg">
+											<span>Inscrit</span>
+										</button>
 									</fieldset>
 								</form>
 							</div>
 						</div>
-					</div>
-					<div class="tg-shareor"><span>or</span></div>
-					<div class="tg-signupwith">
-						<h2>Sign in With...</h2>
-						<ul class="tg-sharesocialicon">
-							<li class="tg-facebook"><a href="#"><i class="icon-facebook-1"></i><span>Facebook</span></a></li>
-							<li class="tg-twitter"><a href="#"><i class="icon-twitter-1"></i><span>Twitter</span></a></li>
-							<li class="tg-googleplus"><a href="#"><i class="icon-google4"></i><span>Google+</span></a></li>
-						</ul>
 					</div>
 				</div>
 			</div>
@@ -682,20 +725,21 @@
 	<!--************************************
 			Login Singup End
 	*************************************-->
-	<script src="js/vendor/jquery-library.js"></script>
-	<script src="js/vendor/bootstrap.min.js"></script>
+	@endif
+	<script src="{{ asset('js/vendor/jquery-library.js') }}"></script>
+	<script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
 	<script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&amp;language=en"></script>
-	<script src="js/bootstrap-select.min.js"></script>
-	<script src="js/jquery-scrolltofixed.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.mmenu.all.js"></script>
-	<script src="js/packery.pkgd.min.js"></script>
-	<script src="js/jquery.vide.min.js"></script>
-	<script src="js/scrollbar.min.js"></script>
-	<script src="js/prettyPhoto.js"></script>
-	<script src="js/countdown.js"></script>
-	<script src="js/parallax.js"></script>
-	<script src="js/gmap3.js"></script>
-	<script src="js/main.js"></script>
+	<script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+	<script src="{{ asset('js/jquery-scrolltofixed.js') }}"></script>
+	<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.mmenu.all.js') }}"></script>
+	<script src="{{ asset('js/packery.pkgd.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.vide.min.js') }}"></script>
+	<script src="{{ asset('js/scrollbar.min.js') }}"></script>
+	<script src="{{ asset('js/prettyPhoto.js') }}"></script>
+	<script src="{{ asset('js/countdown.js') }}"></script>
+	<script src="{{ asset('js/parallax.js') }}"></script>
+	<script src="{{ asset('js/gmap3.js') }}"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

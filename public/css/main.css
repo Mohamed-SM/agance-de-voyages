@@ -5024,7 +5024,7 @@ body.tg-hidescroll{overflow:hidden;}
 	align-content: center;
 }
 .tg-contentarea .close{
-	top:25px;
+	/*top:25px;*/
 	opacity:1;
 	right:25px;
 	color:#fff;
@@ -5094,7 +5094,7 @@ body.tg-hidescroll{overflow:hidden;}
 	float:left;
 	text-align:center;
 	position:relative;
-	line-height:inherit;
+	line-height:2.5;
 	list-style-type:none;
 	border-left:1px solid #cdcdcd;
 }
@@ -5121,7 +5121,7 @@ body.tg-hidescroll{overflow:hidden;}
 .tg-tabcontent{
 	width:100%;
 	float:left;
-	padding:70px 150px 0;
+	padding:20px 150px 0;
 }
 .tg-formlogin .form-group .tg-checkbox{width:auto;}
 .tg-formlogin .form-group span{
