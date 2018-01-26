@@ -689,7 +689,7 @@
 											@endif
 										</div>
 										<div class="form-group">
-											<label>Name<sup>*</sup></label>
+											<label>Email<sup>*</sup></label>
 											<input type="text" name="email" class="form-control" value="{{ old('email') }}" required>
 											@if ($errors->has('email'))
 												<span class="help-block">
