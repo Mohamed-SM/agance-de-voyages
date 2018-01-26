@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('/','HomeController@index');
+Route::get('/','HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 
 Route::resource('users', 'UserController');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('admin/permissions', 'PermissionController');
+
+Route::resource('trips', 'TripController');

@@ -7,6 +7,11 @@ use App\User;
 
 class UserController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -59,7 +64,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id); //Get user with specified id
+        $roles = Role::get(); //Get all roles
+
+        return view('users.edit', compact('user', 'roles')); //pass user and roles data to view
     }
 
     /**
@@ -71,7 +79,27 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id); //Get role specified by id
+
+    //Validate name, email and password fields  
+        $this->validate($request, [
+            'name'=>'required|max:120',
+            'email'=>'required|email|unique:users,email,'.$id,
+            'password'=>'required|min:6|confirmed'
+        ]);
+        $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
+        $roles = $request['roles']; //Retreive all roles
+        $user->fill($input)->save();
+
+        if (isset($roles)) {        
+            $user->roles()->sync($roles);  //If one or more role is selected associate user to roles          
+        }        
+        else {
+            $user->roles()->detach(); //If no role is selected remove exisiting role associated to a user
+        }
+        return redirect()->route('users.index')
+            ->with('flash_message',
+             'User successfully edited.');
     }
 
     /**

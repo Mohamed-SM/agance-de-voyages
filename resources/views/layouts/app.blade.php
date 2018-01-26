@@ -90,7 +90,7 @@
 							<div class="item tg-trendingtrip">
 								<figure>
 									<a href="javascript:void(0);">
-										<img src="images/tours/img-05.jpg" alt="image destinations">
+										<img src="{{ asset('/images/tours/img-05.jpg')}}" alt="image destinations">
 										<div class="tg-hover">
 											<span class="tg-stars"><span></span></span>
 											<span class="tg-tourduration">7 Days</span>
@@ -106,7 +106,7 @@
 							<div class="item tg-trendingtrip">
 								<figure>
 									<a href="javascript:void(0);">
-										<img src="images/tours/img-06.jpg" alt="image destinations">
+										<img src="{{ asset('images/tours/img-06.jpg')}}" alt="image destinations">
 										<div class="tg-hover">
 											<span class="tg-stars"><span></span></span>
 											<span class="tg-tourduration">7 Days</span>
@@ -122,7 +122,7 @@
 							<div class="item tg-trendingtrip">
 								<figure>
 									<a href="javascript:void(0);">
-										<img src="images/tours/img-07.jpg" alt="image destinations">
+										<img src="{{ asset('images/tours/img-07.jpg')}}" alt="image destinations">
 										<div class="tg-hover">
 											<span class="tg-stars"><span></span></span>
 											<span class="tg-tourduration">7 Days</span>
@@ -138,7 +138,7 @@
 							<div class="item tg-trendingtrip">
 								<figure>
 									<a href="javascript:void(0);">
-										<img src="images/tours/img-08.jpg" alt="image destinations">
+										<img src="{{ asset('images/tours/img-08.jpg')}}" alt="image destinations">
 										<div class="tg-hover">
 											<span class="tg-stars"><span></span></span>
 											<span class="tg-tourduration">7 Days</span>
@@ -207,11 +207,11 @@
 						<nav class="tg-infonav">
 							<ul>
 								<li>
-									<i><img src="images/icons/icon-01.png" alt="image destinations"></i>
+									<i><img src="{{ asset('images/icons/icon-01.png')}}" alt="image destinations"></i>
 									<span>1-800-321-6543</span>
 								</li>
 								<li>
-									<i><img src="images/icons/icon-02.png" alt="image destinations"></i>
+									<i><img src="{{ asset('images/icons/icon-02.png')}}" alt="image destinations"></i>
 									<span>CHOOSE YOUR EXPERIENCE <a href="javascript:void(0);">Discover more</a></span>
 								</li>
 							</ul>
@@ -226,12 +226,12 @@
 							<nav class="tg-cartsearch">
 								<ul>
 									<li>
-										<a href="javascript:void(0);"><img src="images/icons/icon-03.png" alt="image destinations"></a>
+										<a href="javascript:void(0);"><img src="{{ asset('images/icons/icon-03.png')}}" alt="image destinations"></a>
 										<div class="tg-cartitems">
 											<div class="tg-cartlistitems">
 												<h3>Shopping Cart</h3>
 												<div class="tg-cartitem">
-													<figure class="tg-itemimg"><img src="images/products/img-11.jpg" alt="image description"></figure>
+													<figure class="tg-itemimg"><img src="{{ asset('images/products/img-11.jpg')}}" alt="image description"></figure>
 													<div class="tg-contentbox">
 														<div class="tg-producthead">
 															<em>x 2</em>
@@ -241,7 +241,7 @@
 													</div>
 												</div>
 												<div class="tg-cartitem">
-													<figure class="tg-itemimg"><img src="images/products/img-11.jpg" alt="image description"></figure>
+													<figure class="tg-itemimg"><img src="{{ asset('images/products/img-11.jpg')}}" alt="image description"></figure>
 													<div class="tg-contentbox">
 														<div class="tg-producthead">
 															<em>x 2</em>
@@ -260,13 +260,13 @@
 											</div>
 										</div>
 									</li>
-									<li><a href="#tg-search"><img src="images/icons/icon-04.png" alt="image destinations"></a></li>
+									<li><a href="#tg-search"><img src="{{ asset('images/icons/icon-04.png')}}" alt="image destinations"></a></li>
 								</ul>
 							</nav>
 						</div>
 					</div>
 					<div class="tg-navigationarea tg-headerfixed">
-						<strong class="tg-logo"><a href="index-2.html"><img src="images/logo.png" alt="company logo here"></a></strong>
+						<strong class="tg-logo"><a href="index-2.html"><img src="{{ asset('images/logo.png')}}" alt="company logo here"></a></strong>
 						
 						<div class="tg-socialsignin">
 						
@@ -285,12 +285,12 @@
 							<div class="tg-userbox">
 								<div class="dropdown tg-dropdown">
 									<button class="tg-btndropdown" id="tg-dropdowndashboard" type="button" data-toggle="dropdown">
-										<img src="images/author/img-01.jpg" alt="image description">
+										<img src="{{ asset('images/author/img-01.jpg')}}" alt="image description">
 										<span>{{ Auth::user()->name }}</span>
 										<i class="fa fa-caret-down"></i>
 									</button>
 									<ul class="dropdown-menu tg-dropdownusermenu" aria-labelledby="tg-dropdowndashboard">
-										<li><a href="dashboard.html">Dashboard</a></li>
+										<li><a href="{{route('dashboard')}}">Dashboard</a></li>
 										<li><a href="dashboard.html">Edit Profile</a></li>
 										<li>
 										<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -344,7 +344,7 @@
 													<div class="item tg-trendingtrip">
 														<figure>
 															<a href="javascript:void(0);">
-																<img src="images/tours/img-05.jpg" alt="image destinations">
+																<img src="{{ asset('images/tours/img-05.jpg')}}" alt="image destinations">
 																<div class="tg-hover">
 																	<span class="tg-stars"><span></span></span>
 																	<span class="tg-tourduration">7 Days</span>
@@ -360,7 +360,7 @@
 													<div class="item tg-trendingtrip">
 														<figure>
 															<a href="javascript:void(0);">
-																<img src="images/tours/img-06.jpg" alt="image destinations">
+																<img src="{{ asset('images/tours/img-06')}}.jpg" alt="image destinations">
 																<div class="tg-hover">
 																	<span class="tg-stars"><span></span></span>
 																	<span class="tg-tourduration">7 Days</span>
@@ -376,7 +376,7 @@
 													<div class="item tg-trendingtrip">
 														<figure>
 															<a href="javascript:void(0);">
-																<img src="images/tours/img-07.jpg" alt="image destinations">
+																<img src="{{ asset('images/tours/img-07')}}.jpg" alt="image destinations">
 																<div class="tg-hover">
 																	<span class="tg-stars"><span></span></span>
 																	<span class="tg-tourduration">7 Days</span>
@@ -392,7 +392,7 @@
 													<div class="item tg-trendingtrip">
 														<figure>
 															<a href="javascript:void(0);">
-																<img src="images/tours/img-08.jpg" alt="image destinations">
+																<img src="{{ asset('images/tours/img-08.jpg')}}" alt="image destinations">
 																<div class="tg-hover">
 																	<span class="tg-stars"><span></span></span>
 																	<span class="tg-tourduration">7 Days</span>
@@ -491,7 +491,7 @@
 									<ul>
 										<li>
 											<figure>
-												<a href="javascript:void(0);"><img src="images/thumbnail/img-01.jpg" alt="image destinations"></a>
+												<a href="javascript:void(0);"><img src="{{ asset('images/thumbnail/img-01.jpg')}}" alt="image destinations"></a>
 											</figure>
 											<div class="tg-newcontent">
 												<h4><a href="javascript:void(0);">Bungee Jumping Trip</a></h4>
@@ -503,7 +503,7 @@
 										</li>
 										<li>
 											<figure>
-												<a href="javascript:void(0);"><img src="images/thumbnail/img-02.jpg" alt="image destinations"></a>
+												<a href="javascript:void(0);"><img src="{{ asset('images/thumbnail/img-02.jpg')}}" alt="image destinations"></a>
 											</figure>
 											<div class="tg-newcontent">
 												<h4><a href="javascript:void(0);">Trip to White Castle</a></h4>
@@ -543,7 +543,7 @@
 									<form class="tg-formtheme tg-formnewsletter">
 										<fieldset>
 											<input type="email" name="email" class="form-control" placeholder="Your Email">
-											<button type="submit"><img src="images/icons/icon-08.png" alt="image destinations"></button>
+											<button type="submit"><img src="/images/icons/icon-08.png" alt="image destinations"></button>
 										</fieldset>
 									</form>
 									<span>We respect your privacy</span>
@@ -623,7 +623,8 @@
 	<!--************************************
 			Login Singup Start
 	*************************************-->
-	<div id="tg-loginsingup" class="tg-loginsingup {{ $errors->has('email') ? 'open' : ''}}" data-vide-bg="poster: images/singup-img.jpg" data-vide-options="position: 0% 50%">
+	@if (isset($errors))
+	<div id="tg-loginsingup" class="tg-loginsingup {{ $errors->has('email') ? 'open' : ''}}" data-vide-bg="poster: {{ asset('images/singup-img.jpg')}}" data-vide-options="position: 0% 50%">
 		<div class="tg-contentarea tg-themescrollbar">
 			<div class="tg-scrollbar">
 				<button type="button" class="close">x</button>
@@ -722,10 +723,12 @@
 			</div>
 		</div>
 	</div>
+	@endif
 	<!--************************************
 			Login Singup End
 	*************************************-->
 	@endif
+
 	<script src="{{ asset('js/vendor/jquery-library.js') }}"></script>
 	<script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
 	<script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&amp;language=en"></script>
