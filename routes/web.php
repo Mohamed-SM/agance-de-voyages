@@ -30,3 +30,4 @@ Route::get('trips/{id}','TripController@show');
 Route::post('trips/{id}/reservation','ReservationController@store')->name('reservation.store');
 
 Route::get('reservations','ReservationController@index')->name('reservations');
+Route::get('reservations/{id}','ReservationController@show')->name('reservations.show');

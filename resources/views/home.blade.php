@@ -8,61 +8,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h1>Agance de Voyages</h1>
           <h2>chercher dans las list des voyages</h2>
-          <form class="tg-formtheme tg-formtrip">
-            <fieldset>
-              <div class="form-group">
-                <div class="tg-select">
-                  <select class="selectpicker" data-live-search="true" data-width="100%">
-                    <option data-tokens="Destinations">Destinations</option>
-                    <option data-tokens="All Areas">All Areas</option>
-                    <option data-tokens="Bayonne">Bayonne</option>
-                    <option data-tokens="Greenville">Greenville</option>
-                    <option data-tokens="Manhattan">Manhattan</option>
-                    <option data-tokens="Queens">Queens</option>
-                    <option data-tokens="The Heights">The Heights</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="tg-select">
-                  <select class="selectpicker" data-live-search="true" data-width="100%">
-                    <option data-tokens="Travel Month">Travel Month</option>
-                    <option data-tokens="January">January</option>
-                    <option data-tokens="February">February</option>
-                    <option data-tokens="March">March</option>
-                    <option data-tokens="April">April</option>
-                    <option data-tokens="May">May</option>
-                    <option data-tokens="June">June</option>
-                    <option data-tokens="July">July</option>
-                    <option data-tokens="August">August</option>
-                    <option data-tokens="September">September</option>
-                    <option data-tokens="October">October</option>
-                    <option data-tokens="November">November</option>
-                    <option data-tokens="December">December</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="tg-select">
-                  <select class="selectpicker" data-live-search="true" data-width="100%">
-                    <option data-tokens="Duration">Duration</option>
-                    <option data-tokens="2 weeks">2 weeks</option>
-                    <option data-tokens="3 weeks">3 weeks</option>
-                    <option data-tokens="4 weeks">4 weeks</option>
-                    <option data-tokens="5 weeks">5 weeks</option>
-                    <option data-tokens="6 weeks">6 weeks</option>
-                    <option data-tokens="7 weeks">7 weeks</option>
-                    <option data-tokens="8 weeks">8 weeks</option>
-                    <option data-tokens="9 weeks">9 weeks</option>
-                    <option data-tokens="10 weeks">10 weeks</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <button class="tg-btn" type="submit"><span>find tours</span></button>
-              </div>
-            </fieldset>
-          </form>
+          <a class="tg-btn" href="{{route('trips')}}"><span>Consulter</span></a>
         </div>
       </div>
     </div>
@@ -87,7 +33,7 @@
           <div class="tg-toursdestinations">
             <div class="tg-tourdestination tg-tourdestinationbigbox">
               <figure>
-                <a href="javascript:void(0);">
+                <a href="{{route('trips')}}">
                   <img src="images/destination/img-01.jpg" alt="image destinations">
                   <div class="tg-hoverbox">
                     <div class="tg-adventuretitle">
@@ -102,7 +48,7 @@
             </div>
             <div class="tg-tourdestination">
               <figure>
-                <a href="javascript:void(0);">
+                <a href="{{route('trips')}}">
                   <img src="images/destination/img-02.jpg" alt="image destinations">
                   <div class="tg-hoverbox">
                     <div class="tg-adventuretitle">
@@ -114,7 +60,7 @@
             </div>
             <div class="tg-tourdestination">
               <figure>
-                <a href="javascript:void(0);">
+                <a href="{{route('trips')}}">
                   <img src="images/destination/img-03.jpg" alt="image destinations">
                   <div class="tg-hoverbox">
                     <div class="tg-adventuretitle">
@@ -221,43 +167,43 @@
               <div class="tg-description"><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam consectetuer adipiscing elit, sed diam nonummy nibh...</p></div>
               <ul class="tg-destinations">
                 <li>
-                  <a href="tourcatagory.html">
+                  <a href="{{route('trips')}}">
                     <h3>Europe</h3>
                     <em>(05)</em>
                   </a>
                 </li>
                 <li>
-                  <a href="tourcatagory.html">
+                  <a href="{{route('trips')}}">
                     <h3>Africa</h3>
                     <em>(15)</em>
                   </a>
                 </li>
                 <li>
-                  <a href="tourcatagory.html">
+                  <a href="{{route('trips')}}">
                     <h3>Asia</h3>
                     <em>(12)</em>
                   </a>
                 </li>
                 <li>
-                  <a href="tourcatagory.html">
+                  <a href="{{route('trips')}}">
                     <h3>Oceania</h3>
                     <em>(02)</em>
                   </a>
                 </li>
                 <li>
-                  <a href="tourcatagory.html">
+                  <a href="{{route('trips')}}">
                     <h3>North America</h3>
                     <em>(08)</em>
                   </a>
                 </li>
                 <li>
-                  <a href="tourcatagory.html">
+                  <a href="{{route('trips')}}">
                     <h3>South America</h3>
                     <em>(27)</em>
                   </a>
                 </li>
               </ul>
-              <a class="tg-btn" href="tourcatagory.html"><span>all destinations</span></a>
+              <a class="tg-btn" href="{{route('trips')}}"><span>all destinations</span></a>
             </div>
           </div>
         </div>
@@ -276,9 +222,9 @@
         <div id="tg-destinationsslider" class="tg-destinationsslider tg-destinations owl-carousel">
           <div class="item tg-destination">
             <figure>
-              <a href="tourbookingdetail.html"><img src="images/destination/img-04.jpg" alt="image description"></a>
+              <a href="{{route('trips')}}"><img src="images/destination/img-04.jpg" alt="image description"></a>
               <figcaption>
-                <h2><a href="tourbookingdetail.html">Paris</a></h2>
+                <h2><a href="{{route('trips')}}">Paris</a></h2>
                 <div class="tg-description">
                   <p>in the streets of London</p>
                 </div>
@@ -287,18 +233,18 @@
           </div>
           <div class="item tg-destination">
             <figure>
-              <a href="tourbookingdetail.html"><img src="images/destination/img-05.jpg" alt="image description"></a>
+              <a href="{{route('trips')}}"><img src="images/destination/img-05.jpg" alt="image description"></a>
               <figcaption>
-                <h2><a href="tourbookingdetail.html">Egypt</a></h2>
+                <h2><a href="{{route('trips')}}">Egypt</a></h2>
                 <div class="tg-description">
                   <p>in the streets of London</p>
                 </div>
               </figcaption>
             </figure>
             <figure>
-              <a href="tourbookingdetail.html"><img src="images/destination/img-06.jpg" alt="image description"></a>
+              <a href="{{route('trips')}}"><img src="images/destination/img-06.jpg" alt="image description"></a>
               <figcaption>
-                <h2><a href="tourbookingdetail.html">London</a></h2>
+                <h2><a href="{{route('trips')}}">London</a></h2>
                 <div class="tg-description">
                   <p>in the streets of London</p>
                 </div>
@@ -307,9 +253,9 @@
           </div>
           <div class="item tg-destination">
             <figure>
-              <a href="javascript:void(0);"><img src="images/destination/img-07.jpg" alt="image description"></a>
+              <a href="{{route('trips')}}"><img src="images/destination/img-07.jpg" alt="image description"></a>
               <figcaption>
-                <h2><a href="javascript:void(0);">Istanbul</a></h2>
+                <h2><a href="{{route('trips')}}">Istanbul</a></h2>
                 <div class="tg-description">
                   <p>Beautiful Mosque</p>
                 </div>
@@ -318,9 +264,9 @@
           </div>
           <div class="item tg-destination">
             <figure>
-              <a href="javascript:void(0);"><img src="images/destination/img-04.jpg" alt="image description"></a>
+              <a href="{{route('trips')}}"><img src="images/destination/img-04.jpg" alt="image description"></a>
               <figcaption>
-                <h2><a href="javascript:void(0);">Paris</a></h2>
+                <h2><a href="{{route('trips')}}">Paris</a></h2>
                 <div class="tg-description">
                   <p>in the streets of London</p>
                 </div>
@@ -329,18 +275,18 @@
           </div>
           <div class="item tg-destination">
             <figure>
-              <a href="javascript:void(0);"><img src="images/destination/img-05.jpg" alt="image description"></a>
+              <a href="{{route('trips')}}"><img src="images/destination/img-05.jpg" alt="image description"></a>
               <figcaption>
-                <h2><a href="javascript:void(0);">Egypt</a></h2>
+                <h2><a href="{{route('trips')}}">Egypt</a></h2>
                 <div class="tg-description">
                   <p>in the streets of London</p>
                 </div>
               </figcaption>
             </figure>
             <figure>
-              <a href="javascript:void(0);"><img src="images/destination/img-06.jpg" alt="image description"></a>
+              <a href="{{route('trips')}}"><img src="images/destination/img-06.jpg" alt="image description"></a>
               <figcaption>
-                <h2><a href="javascript:void(0);">London</a></h2>
+                <h2><a href="{{route('trips')}}">London</a></h2>
                 <div class="tg-description">
                   <p>in the streets of London</p>
                 </div>
@@ -349,9 +295,9 @@
           </div>
           <div class="item tg-destination">
             <figure>
-              <a href="javascript:void(0);"><img src="images/destination/img-07.jpg" alt="image description"></a>
+              <a href="{{route('trips')}}"><img src="images/destination/img-07.jpg" alt="image description"></a>
               <figcaption>
-                <h2><a href="javascript:void(0);">Istanbul</a></h2>
+                <h2><a href="{{route('trips')}}">Istanbul</a></h2>
                 <div class="tg-description">
                   <p>Beautiful Mosque</p>
                 </div>

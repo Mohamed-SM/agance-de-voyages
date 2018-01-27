@@ -1,261 +1,86 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('banner')
-<div class="tg-parallax tg-innerbanner" data-appear-top-offset="600" data-parallax="scroll" data-image-src="/images/parallax/bgparallax-06.jpg">
-    <div class="tg-sectionspace tg-haslayout">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
-            </div>
-        </div>
-    </div>
-</div>
 
-@endsection
-
-@section('main')
-<main id="tg-main" class="tg-main tg-haslayout">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div id="tg-content" class="tg-content">
-                        <div class="tg-tourbookingdetail">
-                            <div class="tg-bookinginfo">
-                                <h2>{{ $trip->title }}</h2>
-                                <div class="tg-durationrating">
-                                    <span class="tg-stars"><span></span></span>
-                                    <em>(3 Review)</em>
-                                </div>
-                                <div class="tg-pricearea">
-                                    <span>Prix</span>
-                                    <h4>{{ $trip->price }} DA<sub>/ per person</sub></h4>
-                                </div>
-                                <div class="tg-description">
-                                    <p>{{ $trip->places_rest }} place restante</p>
-                                </div>
-                                <form class="tg-formtheme tg-formbookingdetail" method="post"  action="{{ route('reservation.store',$trip->id) }}">
-                                    {{ csrf_field() }}
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <div class="tg-formicon"><i class="icon-user-check"></i></div>
-                                            <span class="tg-select">
-                                                <select class="selectpicker" name="places" data-live-search="true" data-width="100%" required>
-                                                    <option selected="true" disabled="disabled">Nobre de places</option>
-                                                    @for ($i = 1; $i <= $trip->places_rest; $i++)
-                                                    <option data-tokens="{{ $i }}" value="{{ $i }}">{{ $i }}</option>
-                                                    @endfor
-                                                </select>
-                                            </span>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="tg-btn tg-btn-lg"><span>proceed boking</span></button>
-                                        </div>
-                                    </fieldset>
-                                </form>
-                                <ul class="tg-tripinfo">
-                                    <?php 
-                                        $start = \Carbon\Carbon::parse($trip->start_at);
-                                        $end = \Carbon\Carbon::parse($trip->end_at); 
-                                    ?>
-                                        
-                                    <li><span class="tg-tourduration">{{ $start->diffInDays($end) }} jours</span></li>
-                                    <li><span class="tg-tourduration tg-availabilty">depart {{ $start->format('d-m-Y') }}</span></li>
-                                    <li><span class="tg-tourduration tg-availabilty">fin {{ $end->format('d-m-Y') }}</span></li>
-                                    <li><span class="tg-tourduration tg-peoples">{{ $trip->places }} person</span></li>
-                                </ul>
-                            </div>
-                            <div class="tg-sectionspace tg-haslayout">
-                                <div class="tg-themetabs tg-bookingtabs">
-                                    <ul class="tg-themetabnav" role="tablist">
-                                        <li role="presentation" class="active">
-                                            <a href="#description" aria-controls="description" role="tab" data-toggle="tab">
-                                                <span>Description</span>
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a href="#plan" aria-controls="plan" role="tab" data-toggle="tab">
-                                                <span>Itinerary</span>
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a href="#mape" aria-controls="mape" role="tab" data-toggle="tab">
-                                                <span>location</span>
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a href="#images" aria-controls="images" role="tab" data-toggle="tab">
-                                                <span>Images</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content tg-themetabcontent">
-                                        <div role="tabpanel" class="tab-pane active tg-overviewtab" id="description">
-                                            <div class="tg-bookingdetail">
-                                                <div class="tg-box">
-                                                    <h2>Infotmation sur le voyage</h2>
-                                                    <div class="tg-description">
-                                                        {{ $trip->description }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tg-bookingdetail tg-bookingdetailstyle">
-                                                <div class="tg-box tg-amentities">
-                                                    <h3>{{ $trip->title }}</h3>
-                                                    <hr>
-                                                    <div class="tg-content">
-                                                        <img src="/images/tours/{{ $trip->image ? $trip->image : 'trip.default.png'}}" alt="image destinations">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane tg-itinerary" id="plan">
-                                            <div class="tg-bookingdetail">
-                                                <div class="tg-box">
-                                                    <div class="tg-accordion" role="tablist" aria-multiselectable="true">
-                                                        <div class="tg-panel">
-                                                            <h4>Day 1<span>Lorem ipsum dolor sit amet consectetuer.</span></h4>
-                                                            <div class="tg-panelcontent">
-                                                                <div class="tg-description">
-                                                                    <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Vivamus sagittis lacus vel augue Sed non mauris vitae;erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tg-panel">
-                                                            <h4>Day 3<span>Lorem ipsum dolor sit amet consectetuer.</span></h4>
-                                                            <div class="tg-panelcontent">
-                                                                <div class="tg-description">
-                                                                    <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Vivamus sagittis lacus vel augue Sed non mauris vitae;erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tg-panel">
-                                                            <h4>Day 5<span>Lorem ipsum dolor sit amet consectetuer.</span></h4>
-                                                            <div class="tg-panelcontent">
-                                                                <div class="tg-description">
-                                                                    <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Vivamus sagittis lacus vel augue Sed non mauris vitae;erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tg-bookingdetail">
-                                                <div class="tg-box">
-                                                    <div id="tg-accordion" class="tg-accordion" role="tablist" aria-multiselectable="true">
-                                                        <div class="tg-panel">
-                                                            <h4>Day 2<span>Lorem ipsum dolor sit amet consectetuer.</span></h4>
-                                                            <div class="tg-panelcontent">
-                                                                <div class="tg-description">
-                                                                    <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Vivamus sagittis lacus vel augue Sed non mauris vitae;erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tg-panel">
-                                                            <h4>Day 4<span>Lorem ipsum dolor sit amet consectetuer.</span></h4>
-                                                            <div class="tg-panelcontent">
-                                                                <div class="tg-description">
-                                                                    <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Vivamus sagittis lacus vel augue Sed non mauris vitae;erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tg-panel">
-                                                            <h4>Day 6<span>Lorem ipsum dolor sit amet consectetuer.</span></h4>
-                                                            <div class="tg-panelcontent">
-                                                                <div class="tg-description">
-                                                                    <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Vivamus sagittis lacus vel augue Sed non mauris vitae;erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane tg-locationtab" id="mape">
-                                            <div class="tg-box tg-location">
-                                                <h3>The neighborhood</h3>
-                                                <div class="tg-description">
-                                                    <p>Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Etiam porta sem malesuada magna mollis
-                                                    euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                                </div>
-                                                <div id="tg-locationmap" class="tg-locationmap tg-map"></div>
-                                            </div>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane tg-gallerytab" id="images">
-                                            <div class="tg-gallery">
-                                                <ul>
-                                                    <li>
-                                                        <figure>
-                                                            <a href="/images/gallery/img-01.jpg" data-rel="prettyPhoto[instagram]">
-                                                                <img src="/images/gallery/img-01.jpg" alt="image decruoton">
-                                                            </a>
-                                                        </figure>
-                                                    </li>
-                                                    <li>
-                                                        <figure>
-                                                            <a href="/images/gallery/img-02.jpg" data-rel="prettyPhoto[instagram]">
-                                                                <img src="/images/gallery/img-02.jpg" alt="image decruoton">
-                                                            </a>
-                                                        </figure>
-                                                    </li>
-                                                    <li>
-                                                        <figure>
-                                                            <a href="/images/gallery/img-03.jpg" data-rel="prettyPhoto[instagram]">
-                                                                <img src="/images/gallery/img-03.jpg" alt="image decruoton">
-                                                            </a>
-                                                        </figure>
-                                                    </li>
-                                                    <li>
-                                                        <figure>
-                                                            <a href="/images/gallery/img-04.jpg" data-rel="prettyPhoto[instagram]">
-                                                                <img src="/images/gallery/img-04.jpg" alt="image decruoton">
-                                                            </a>
-                                                        </figure>
-                                                    </li>
-                                                    <li>
-                                                        <figure>
-                                                            <a href="/images/gallery/img-05.jpg" data-rel="prettyPhoto[instagram]">
-                                                                <img src="/images/gallery/img-05.jpg" alt="image decruoton">
-                                                            </a>
-                                                        </figure>
-                                                    </li>
-                                                    <li>
-                                                        <figure>
-                                                            <a href="/images/gallery/img-06.jpg" data-rel="prettyPhoto[instagram]">
-                                                                <img src="/images/gallery/img-06.jpg" alt="image decruoton">
-                                                            </a>
-                                                        </figure>
-                                                    </li>
-                                                    <li>
-                                                        <figure>
-                                                            <a href="/images/gallery/img-07.jpg" data-rel="prettyPhoto[instagram]">
-                                                                <img src="/images/gallery/img-07.jpg" alt="image decruoton">
-                                                            </a>
-                                                        </figure>
-                                                    </li>
-                                                    <li>
-                                                        <figure>
-                                                            <a href="/images/gallery/img-08.jpg" data-rel="prettyPhoto[instagram]">
-                                                                <img src="/images/gallery/img-08.jpg" alt="image decruoton">
-                                                            </a>
-                                                        </figure>
-                                                    </li>
-                                                    <li>
-                                                        <figure>
-                                                            <a href="/images/gallery/img-09.jpg" data-rel="prettyPhoto[instagram]">
-                                                                <img src="/images/gallery/img-09.jpg" alt="image decruoton">
-                                                            </a>
-                                                        </figure>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+@section('dashbord-content')
+    <div id="tg-content" class="tg-content">
+        <div class="tg-dashboard">
+            <div class="tg-fulltourdetail">
+                <div class="tg-box tg-tourname">
+                    <div class="tg-heading">
+                        <h3>Reservation #{{ $reservation->id }} - {{ $reservation->trip->title }}</h3>
+                    </div>
+                    <div class="tg-dashboardcontent">
+                        <h3>Information de reservation </h3>
+                        <hr>
+                        <div class="tg-content">
+                            <ul class="tg-liststyle">
+                                <li><span>Numero D'Ordre:</span></li>
+                                <li><span>#{{ $reservation->id }}</span></li>
+                                <li><span>Date de Reservation</span></li>
+                                <li><span>{{ $reservation->created_at }}</span></li>
+                                <li><span>Titre</span></li>
+                                <li><span>{{ $reservation->trip->title }}</span></li>
+                                <li><span>Date De depart</span></li>
+                                <li><span>{{ $reservation->trip->start_at }}</span></li>
+                                <li><span>Status de Reservation</span></li>
+                                <li>
+                                    <span>
+                                        @if ($reservation->status == 0)
+                                            non payée
+                                            <p class="danger">cette reservation serait suppremier automatiquement avans 7 jours de jour de depart si vous ne confirme pas la reservation avec payment</p>
+                                        @elseif ($reservation->status == 1)
+                                            en cours de procceess
+                                        @elseif ($reservation->status == 2)
+                                            terminné
+                                        @elseif ($reservation->status == 3)
+                                            Suprimmer
+                                        @endif
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+                <div class="tg-box tg-contactdetail">
+                    <div class="tg-dashboardcontent">
+                        <h3>information de Contact </h3>
+                        <hr>
+                        <div class="tg-content">
+                            <ul class="tg-liststyle">
+                                <li><span>Nom</span></li>
+                                <li><span>{{ $reservation->user->name }}</span></li>
+                                <li><span>Email Address</span></li>
+                                <li><span>{{ $reservation->user->email }}</span></li>
+                                <li><span>Phone Number</span></li>
+                                <li><span>1-800-321-6549</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tg-box tg-travellerprice">
+                    <div class="tg-dashboardcontent">
+                        <div class="tg-widgetpersonprice">
+                            <div class="tg-widgetcontent">
+                                <ul>
+                                    <li class="tg-personprice"><div class="tg-perperson"><span>Prix / Personne <i> {{ $reservation->places }} x {{ $reservation->trip->price }} Da</i></span><em>{{ $reservation->places * $reservation->trip->price }} DA</em></div></li>
+                                    <li><span>Sous Total</span><em>{{ $reservation->places * $reservation->trip->price }} DA</em></li>
+                                    <li><span>Tax</span><em>00 DA</em></li>
+                                    <li><span>TVA</span><em>00 DA</em></li>
+                                    <li class="tg-totalprice"><div class="tg-totalpayment"><span>Prix Total</span><em>{{ $reservation->places * $reservation->trip->price }} DA</em></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                @if ($reservation->status == 0)
+                <div class="pull-right">
+                    <br>
+                    <button type="submit" class="tg-btn"><span>Passer au payment</span></button>
+                    <button type="submit" class="tg-btn"><span>anuler la reservations</span></button>
+                </div>
+                @endif
             </div>
         </div>
-    </main>
+    </div>
 @endsection

@@ -39,7 +39,7 @@
                                         Suprimmer
                                     @endif
                                 </td>
-                                <td data-title="action"><a class="tg-btnview" href="my-booking-view.html">view</a></td>
+                                <td data-title="action"><a class="tg-btnview" href="{{ route('reservations.show',$reservation->id) }}">view</a></td>
                             </tr>
                             @endforeach
                         </tbody>

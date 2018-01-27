@@ -55,7 +55,7 @@ class ReservationController extends Controller
         $reservation->payment_information = 'pas encor payer';
         $reservation->save();
 
-        return redirect()->route('reservations')
+        return redirect()->route('reservations.show',$reservation->id)
         ->with('flash_message', 'Reservations dans'. $trip->title.' created');
     }
 
@@ -65,9 +65,10 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function show(Reservation $reservation)
+    public function show($id)
     {
-        //
+        $reservation = Reservation::find($id);
+        return view('reservations.show',compact('reservation'));
     }
 
     /**
