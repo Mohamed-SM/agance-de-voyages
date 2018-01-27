@@ -7,11 +7,6 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h1>Dashboard</h1>
-            <h2>Ici Vous pouvez administrer les voyages et les reservation</h2>
-            <ol class="tg-breadcrumb">
-              <li><a href="javascript:void(0);">Home</a></li>
-              <li class="tg-active">Dashboard</li>
-            </ol>
           </div>
         </div>
       </div>
