@@ -9,7 +9,7 @@
         type: 'success',
         offset: {
             x: 15,
-            y: 70
+            y: 120
         }
     });
 </script>

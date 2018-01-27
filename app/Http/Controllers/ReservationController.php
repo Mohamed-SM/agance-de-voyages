@@ -77,9 +77,20 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reservation $reservation)
+    public function edit($id)
     {
-        //
+        $reservation = Reservation::find($id);
+        if($reservation->status){
+            redirect()->route('reservations.show',$reservation->id)
+        ->with('flash_message', 'reservation non modifiable pour le mement');
+        }
+        $places_taken = 0;
+        foreach($reservation->trip->reservations as $res){
+            $places_taken+= $res->places;
+        }
+        $reservation->places_rest = $reservation->trip->places - $places_taken + $reservation->places;
+        
+        return view('reservations.edit',compact('reservation'));
     }
 
     /**
@@ -89,9 +100,17 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'places' =>'required|numeric',
+        ]);
+        $reservation = Reservation::find($id);
+        $reservation->places = $request['places'];
+        $reservation->save();
+
+        return redirect()->route('reservations.show',$reservation->id)
+        ->with('flash_message', 'Reservations modifer ');
     }
 
     /**
@@ -100,8 +119,22 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservation $reservation)
+    public function destroy($id)
     {
-        //
+        
+        //Find a reservation with a given id and delete
+        $reservation = Reservation::findOrFail($id); 
+        
+        if($reservation->status){
+            redirect()->route('reservations.show',$reservation->id)
+        ->with('flash_message', 'reservation non modifiable pour le mement');
+        }
+
+        $reservation->delete();
+
+        return redirect()->route('reservations')
+            ->with('flash_message',
+                'Reservation supprimé.');
+    
     }
 }

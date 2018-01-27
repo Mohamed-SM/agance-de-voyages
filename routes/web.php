@@ -31,3 +31,6 @@ Route::post('trips/{id}/reservation','ReservationController@store')->name('reser
 
 Route::get('reservations','ReservationController@index')->name('reservations');
 Route::get('reservations/{id}','ReservationController@show')->name('reservations.show');
+Route::get('reservations/{id}/edit','ReservationController@edit')->name('reservations.edit');
+Route::put('reservations/{id}','ReservationController@update')->name('reservations.update');
+Route::delete('reservations/{id}','ReservationController@destroy')->name('reservations.destroy');

@@ -75,9 +75,11 @@
                 </div>
                 @if ($reservation->status == 0)
                 <div class="pull-right">
+                    {!! Form::open(['method' => 'DELETE', 'route' => ['reservations.destroy', $reservation->id] ]) !!}
                     <br>
-                    <button type="submit" class="tg-btn"><span>Passer au payment</span></button>
-                    <button type="submit" class="tg-btn"><span>anuler la reservations</span></button>
+                    <a class="tg-btn" href="{{ route('reservations.edit',$reservation->id) }}">Modifer</a>
+                    <button class="tg-btn"><span>anuler la reservations</span></button>
+                    {!! Form::close() !!}
                 </div>
                 @endif
             </div>

@@ -319,12 +319,9 @@
 										<a href="{{ route('trips') }}">Voyages</a>
 										<div class="mega-menu">
 											<ul>
-												<li><a href="listingvone.html">list style one</a></li>
-												<li><a href="listingvtwo.html">list style two</a></li>
-												<li><a href="listingvthree.html">list style three</a></li>
-												<li><a href="listingvfour.html">list style four</a></li>
-												<li><a href="listingvfive.html">list style five</a></li>
-												<li><a href="listingvsix.html">list style six</a></li>
+												@for ($i = 0; $i < 7; $i++)
+												<li><a href="{{ route('trips') }} ">Category {{ $i }}</a></li>	
+												@endfor
 											</ul>
 											<div class="tg-sliderarea">
 												<h2>Voyages Populair</h2>
@@ -332,7 +329,7 @@
 													@foreach ($menuTrips as $trip)
 														<div class="item tg-trendingtrip">
 															<figure>
-																<a href="javascript:void(0);">
+																<a href="{{ route('trips.show',$trip->id) }}">
 																	<img src="/images/tours/{{ $trip->image ? $trip->image : 'trip.default.png'}}" alt="image destinations">
 																	<div class="tg-hover">
 																			<?php 
@@ -342,7 +339,7 @@
 																		<span class="tg-tourduration">{{ $start->diffInDays($end) }} jours </span>
 																		<div class="tg-pricearea">
 																			<span>prix</span>
-																			<h4>{{ $trip->price }}</h4>
+																			<h4>{{ $trip->price }} DA</h4>
 																		</div>
 																	</div>
 																</a>
