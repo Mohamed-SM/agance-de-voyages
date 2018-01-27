@@ -73,8 +73,8 @@
                                     ?>
                                         
                                     <li><span class="tg-tourduration">{{ $start->diffInDays($end) }} jours</span></li>
-                                    <li><span class="tg-tourduration tg-availabilty">depart {{ $start->format('d-M-Y') }}</span></li>
-                                    <li><span class="tg-tourduration tg-location">San Francisco</span></li>
+                                    <li><span class="tg-tourduration tg-availabilty">depart {{ $start->format('d-m-Y') }}</span></li>
+                                    <li><span class="tg-tourduration tg-availabilty">fin {{ $end->format('d-m-Y') }}</span></li>
                                     <li><span class="tg-tourduration tg-peoples">{{ $trip->places }} person</span></li>
                                 </ul>
                             </div>
