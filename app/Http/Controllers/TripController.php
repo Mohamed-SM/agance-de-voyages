@@ -23,6 +23,14 @@ class TripController extends Controller
     {
          $trips = Trip::orderby('id', 'desc')->paginate(5); //show only 5 items at a time in descending order
 
+         foreach($trips as $trip){
+             $places_taken = 0;
+             foreach($trip->reservations as $reservation){
+                $places_taken+= $reservation->places;
+             }
+             $trip->places_rest = $trip->places - $places_taken; 
+         }
+
         return view('trips.index', compact('trips'));
     }
 
@@ -52,24 +60,24 @@ class TripController extends Controller
             'places' =>'required|numeric',
             'start_at' =>'required|date',
             'end_at' =>'required|date',
-            ]);
+        ]);
 
-            $input = $request->only('title', 'description','price','places','start_at','end_at');
+        $input = $request->only('title', 'description','price','places','start_at','end_at');
 
-            $trip = new Trip();
-            $trip->fill($input);
+        $trip = new Trip();
+        $trip->fill($input);
 
-            if ($request['image']) {
-                $getimageName = time().'.'.$request->image->getClientOriginalExtension();
-                $request->image->move(public_path('images/tours'),$getimageName);    
-                $trip->image = $getimageName;
-            }
+        if ($request['image']) {
+            $getimageName = time().'.'.$request->image->getClientOriginalExtension();
+            $request->image->move(public_path('images/tours'),$getimageName);    
+            $trip->image = $getimageName;
+        }
 
-            $trip->save();
+        $trip->save();
 
-            return redirect()->route('trips')
-            ->with('flash_message', 'Article,
-             '. $trip->title.' created');
+        return redirect()->route('trips')
+        ->with('flash_message', 'Article,
+            '. $trip->title.' created');
     }
 
     /**
@@ -81,6 +89,13 @@ class TripController extends Controller
     public function show($id)
     {
         $trip = Trip::findOrFail($id); //Find trip of id = $id
+
+        $places_taken = 0;
+        foreach($trip->reservations as $reservation){
+            $places_taken+= $reservation->places;
+        }
+        $trip->places_rest = $trip->places - $places_taken;
+
         return view ('trips.show', compact('trip'));
     }
 

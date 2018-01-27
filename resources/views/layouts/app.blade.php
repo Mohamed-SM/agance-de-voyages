@@ -672,6 +672,7 @@
 	<script src="{{ asset('vendor/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
 
 	@include ('errors.list') {{-- Including error file --}}
+	@include ('layouts.notifications') {{-- Including notifications file --}}
 
 </body>
 </html>

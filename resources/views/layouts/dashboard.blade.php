@@ -29,14 +29,14 @@
               <aside id="tg-sidebar" class="tg-sidebar">
                 <div class="tg-widget tg-widgetdashboard">
                   <div class="tg-widgettitle">
-                    <h3>Admin</h3>
+                    <h3>Mon Compt</h3>
                   </div>
                   <div class="tg-widgetcontent">
                     <ul>
                       <li class="selected"><a href="dashboard.html"><i class="icon-user"></i><span>Dashboard</span></a></li>
                       <li><a href="my-profile.html"><i class="icon-pen2"></i><span>Modifer Profile</span></a></li>
                       <li><a href="change-password.html"><i class="icon-lock-open3"></i><span>Changer Mot de pass</span></a></li>
-                      <li><a href="my-booking.html"><i class="icon-basket3"></i><span>Mes reservations</span></a></li>
+                      <li><a href="{{ route('reservations') }}"><i class="icon-basket3"></i><span>Mes reservations</span></a></li>
                       <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="icon-lock"></i><span>Logout</span></a></li>
                     </ul>
                   </div>

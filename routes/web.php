@@ -27,3 +27,6 @@ Route::resource('admin/trips', 'TripController');
 
 Route::get('trips','TripController@index')->name('trips');
 Route::get('trips/{id}','TripController@show');
+Route::post('trips/{id}/reservation','ReservationController@store')->name('reservation.store');
+
+Route::get('reservations','ReservationController@index')->name('reservations');

@@ -48,12 +48,7 @@
                                             </span>
                                         </div>
                                         <div class="form-group">
-
-                                            @if(Auth::user())
                                             <button type="submit" class="tg-btn tg-btn-lg"><span>proceed boking</span></button>
-                                            @else
-                                            <button type="submit" onclick="event.preventDefault();$('#tg-loginsingup').addClass('open');" class="tg-btn tg-btn-lg"><span>proceed boking</span></button>
-                                            @endif
                                         </div>
                                     </fieldset>
                                 </form>

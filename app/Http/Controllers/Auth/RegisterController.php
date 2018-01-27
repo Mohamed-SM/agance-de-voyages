@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+
 class RegisterController extends Controller
 {
     /*
@@ -37,6 +40,12 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        Session::put('backUrl', URL::previous());
+    }
+
+    public function redirectTo()
+    {
+        return Session::get('backUrl') ? Session::get('backUrl') :   $this->redirectTo;
     }
 
     /**

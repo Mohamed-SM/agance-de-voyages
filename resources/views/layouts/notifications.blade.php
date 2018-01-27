@@ -1,18 +1,16 @@
-@if(isset($errors))
-@if(count($errors) > 0)
+
+
+@if(Session::has('flash_message'))
 <script type="text/javascript">
-    @foreach ($errors->all() as $error)
     $.notify({
         icon: 'fa  fa-exclamation-triangle',
-        message: "{{ $error }}"
+        message: "{{ session('flash_message') }}"
     },{
-        type: 'danger',
+        type: 'success',
         offset: {
             x: 15,
             y: 70
         }
     });
-    @endforeach
 </script>
-@endif
 @endif
