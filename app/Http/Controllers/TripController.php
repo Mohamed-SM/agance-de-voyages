@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\trip;
+use App\Trip;
 use Illuminate\Http\Request;
 
 use Auth;
