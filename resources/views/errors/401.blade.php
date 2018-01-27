@@ -10,12 +10,17 @@
                     <h1>401</h1>
                     <h2>Access non autoriser</h2>
                     <div class="tg-description">
-                        <p>Sorry but the page that you are looking for does not exist...</p>
+                        <p>ce sera rapporté</p>
                     </div>
-                    <a class="tg-btn" href="javascript:void(0);"><span>go back to home</span></a>
+                    <a class="tg-btn" href="{{ route('home') }}"><span>go back to home</span></a>
                 </div>
             </div>
         </div>
     </div>
 </main>
+<script>
+(function() {
+    document.body.classList.add("tg-404errorpage");
+})();
+</script>
 @endsection

@@ -20,8 +20,8 @@ class CreateTripsTable extends Migration
             $table->string('image')->nullable();
             $table->double('price',10,2);
             $table->integer('places');
-            $table->dateTime('start_at');
-            $table->dateTime('end_at');
+            $table->date('start_at');
+            $table->date('end_at');
             $table->timestamps();
         });
     }

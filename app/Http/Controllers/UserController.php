@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
+
+//Importing laravel-permission models
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+//Enables us to output flash messaging
+use Session;
 
 class UserController extends Controller
 {
@@ -30,7 +38,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::get();
+        return view('users.create', ['roles'=>$roles]);
     }
 
     /**
@@ -41,7 +50,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'=>'required|max:120',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|min:6|confirmed'
+        ]);
+
+        $user = User::create($request->only('email', 'name', 'password')); //Retrieving only the email and password data
+
+        $roles = $request['roles']; //Retrieving the roles field
+    //Checking if a role was selected
+        if (isset($roles)) {
+
+            foreach ($roles as $role) {
+            $role_r = Role::where('id', '=', $role)->firstOrFail();            
+            $user->assignRole($role_r); //Assigning role to user
+            }
+        }        
+    //Redirect to the users.index view and display message
+        return redirect()->route('users.index')
+            ->with('flash_message',
+             'User successfully added.');
     }
 
     /**

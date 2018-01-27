@@ -26,7 +26,7 @@
       <div class="row">
         <div id="tg-twocolumns" class="tg-twocolumns">
           <div class="tg-formtheme tg-formdashboard">
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
               <aside id="tg-sidebar" class="tg-sidebar">
                 <div class="tg-widget tg-widgetdashboard">
                   <div class="tg-widgettitle">
@@ -44,7 +44,7 @@
                 </div>
               </aside>
             </div>
-            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
               @yield('dashbord-content')
             </div>
           </div>

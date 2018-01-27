@@ -20,17 +20,20 @@
                 </div>
                 <div class="tg-dashboardcontent">
                     <div class="tg-content">
-                        {{ Form::open(array('route' => 'permissions.index')) }}
+                        {{ Form::open(array('route' => 'roles.index')) }}
                         <fieldset>
                             <div class="form-group">
                                 {{ Form::label('name', 'Name') }}
                                 {{ Form::text('name', '', array('class' => 'form-control')) }}
                             </div>
-                            <div class="form-group"></div>
-                            <div class="form-group">
-                                @foreach ($roles as $role) 
-                                    {{ Form::checkbox('roles[]',  $role->id ) }}
-                                    {{ Form::label($role->name, ucfirst($role->name)) }}<br>
+                            
+                            <h5><b style="padding: 10px;">Assign Permissions</b></h5>
+
+                            <div class='form-group'>
+                                @foreach ($permissions as $permission)
+                                    {{ Form::checkbox('permissions[]',  $permission->id ) }}
+                                    {{ Form::label($permission->name, ucfirst($permission->name)) }}<br>
+
                                 @endforeach
                             </div>
                             

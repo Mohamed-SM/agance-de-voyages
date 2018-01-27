@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h1>Dashboard</h1>
-            <h2>Ici Vous pouvez suiver vos reservations et modifer votre profile</h2>
+            <h2>Ici Vous pouvez administrer les voyages et les reservation</h2>
             <ol class="tg-breadcrumb">
               <li><a href="javascript:void(0);">Home</a></li>
               <li class="tg-active">Dashboard</li>
@@ -24,8 +24,8 @@
     <div class="container">
       <div class="row">
         <div id="tg-twocolumns" class="tg-twocolumns">
-          <form class="tg-formtheme tg-formdashboard">
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+          <div class="tg-formtheme tg-formdashboard">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
               <aside id="tg-sidebar" class="tg-sidebar">
                 <div class="tg-widget tg-widgetdashboard">
                   <div class="tg-widgettitle">
@@ -43,34 +43,10 @@
                 </div>
               </aside>
             </div>
-            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-              <div id="tg-content" class="tg-content">
-                <div class="tg-dashboard">
-                  <div class="tg-box tg-profile">
-                    <div class="tg-heading">
-                      <h3>My Profile</h3>
-                      <a class="tg-btnedit" href="my-profile.html">Edit Profile</a>
-                    </div>
-                    <div class="tg-dashboardcontent">
-                      <figure><img src="images/authorimg.jpg" alt="image description"></figure>
-                      <div class="tg-content">
-                        <ul class="tg-liststyle">
-                          <li><span>Name</span></li>
-                          <li><span>John Smith</span></li>
-                          <li><span>Email Address</span></li>
-                          <li><span>John@gmail.com</span></li>
-                          <li><span>Phone</span></li>
-                          <li><span>1-800-321-6549</span></li>
-                          <li><span>Contact Address</span></li>
-                          <li><span>Manhattan Hall, Advisor Ltd 1258, Melbourne</span></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+              @yield('dashbord-content')
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

@@ -3751,7 +3751,7 @@ blockquote{
 								404 Error Style											
 ======================================================================================*/
 .tg-404errorpage{
-	background: url(../images/img-02.jpg) no-repeat center center fixed;
+	background: url(/images/img-02.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-ms-background-size: cover;

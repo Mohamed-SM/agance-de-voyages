@@ -1,8 +1,9 @@
+<?php Carbon\Carbon::setLocale('fr'); ?>
 <!doctype html>
 <!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>			<html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->	<html class="no-js" lang="zxx"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->	<html class="no-js" lang="fr"> <!--<![endif]-->
 
 <head>
 	<meta charset="utf-8">
@@ -27,11 +28,12 @@
 	<link rel="stylesheet" href="{{ asset('css/color.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
-    <script>
+	<script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
 		]) !!};
-    </script>
+	</script>
+	@yield('style')
 </head>
 <body class="tg-home tg-homevone {{ !Auth::user() ? '': 'tg-login' }}">
 	<!--[if lt IE 8]>
@@ -744,5 +746,9 @@
 	<script src="{{ asset('js/parallax.js') }}"></script>
 	<script src="{{ asset('js/gmap3.js') }}"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
+	<script src="{{ asset('vendor/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+
+	@include ('errors.list') {{-- Including error file --}}
+
 </body>
 </html>

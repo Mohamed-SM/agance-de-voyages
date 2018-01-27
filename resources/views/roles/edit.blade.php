@@ -16,25 +16,26 @@
         <div class="tg-dashboard">
             <div class="tg-box tg-ediprofile">
                 <div class="tg-heading">
-                    <h3>Ajouté une permission</h3>
+                    <h3>Modifer {{$role->name}}</h3>
                 </div>
                 <div class="tg-dashboardcontent">
                     <div class="tg-content">
-                        {{ Form::open(array('route' => 'permissions.index')) }}
+                        {{ Form::model($role, array('route' => array('roles.update', $role->id), 'method' => 'PUT')) }}{{-- Form model binding to automatically populate our fields with permission data --}}
                         <fieldset>
                             <div class="form-group">
                                 {{ Form::label('name', 'Name') }}
-                                {{ Form::text('name', '', array('class' => 'form-control')) }}
+                                {{ Form::text('name', null, array('class' => 'form-control')) }}
                             </div>
-                            <div class="form-group"></div>
-                            <div class="form-group">
-                                @foreach ($roles as $role) 
-                                    {{ Form::checkbox('roles[]',  $role->id ) }}
-                                    {{ Form::label($role->name, ucfirst($role->name)) }}<br>
+                            <h5><b style="padding: 10px;">Assign Permissions</b></h5>
+
+                            <div class='form-group'>
+                                @foreach ($permissions as $permission)
+                                    {{ Form::checkbox('permissions[]',  $permission->id, $role->permissions ) }}
+                                    {{ Form::label($permission->name, ucfirst($permission->name)) }}<br>
+
                                 @endforeach
                             </div>
-                            
-                            <button class="tg-btn"><span>ajouté</span></button>
+                            <button class="tg-btn"><span>Engregistre</span></button>
                         </fieldset>
                         {{ Form::close() }}
                     </div>

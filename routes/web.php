@@ -17,10 +17,13 @@ Auth::routes();
 
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 
-Route::resource('users', 'UserController');
+Route::resource('admin/users', 'UserController');
 
-Route::resource('roles', 'RoleController');
+Route::resource('admin/roles', 'RoleController');
 
 Route::resource('admin/permissions', 'PermissionController');
 
-Route::resource('trips', 'TripController');
+Route::resource('admin/trips', 'TripController');
+
+Route::get('trips','TripController@index')->name('trips');
+Route::get('trips/{id}','TripController@show');

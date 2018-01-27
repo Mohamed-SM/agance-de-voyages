@@ -48,15 +48,26 @@ class TripController extends Controller
             'title'=>'required|max:100',
             'description' =>'required',
             'price' =>'required|numeric',
-            'image' => 'image',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'places' =>'required|numeric',
             'start_at' =>'required|date',
             'end_at' =>'required|date',
             ]);
 
-            $trip = Trip::create($request['title'],$request['descreiption'],$request['price'],$request['places'],$request['start_at'],$request['end_at']);
+            $input = $request->only('title', 'description','price','places','start_at','end_at');
 
-            return redirect()->route('trips.index')
+            $trip = new Trip();
+            $trip->fill($input);
+
+            if ($request['image']) {
+                $getimageName = time().'.'.$request->image->getClientOriginalExtension();
+                $request->image->move(public_path('images/tours'),$getimageName);    
+                $trip->image = $getimageName;
+            }
+
+            $trip->save();
+
+            return redirect()->route('trips')
             ->with('flash_message', 'Article,
              '. $trip->title.' created');
     }

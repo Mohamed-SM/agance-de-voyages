@@ -37,25 +37,27 @@
                             <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                                 <div class="tg-populartour">
                                     <figure>
-                                        <a href="tourbookingdetail.html"><img src="images/tours/img-19.jpg" alt="image destinations"></a>
-                                        <span class="tg-descount">25% Off</span>
+                                        <a href="/trips/{{ $trip->id }}"><img src="/images/tours/{{ $trip->image ? $trip->image : 'trip.default.png'}}" alt="image destinations"></a>
+                                        <span class="tg-descount">{{ $trip->places }} place</span>
                                     </figure>
                                     <div class="tg-populartourcontent">
                                         <div class="tg-populartourtitle">
-                                            <h3><a href="tourbookingdetail.html">{{ $trip->title }}</a></h3>
+                                            <h3><a href="/trips/{{ $trip->id }}">{{ $trip->title }}</a></h3>
                                         </div>
                                         <div class="tg-description">
                                             <p>{{  str_limit($trip->description, 100) }}</p>
                                         </div>
                                         <div class="tg-populartourfoot">
                                             <div class="tg-durationrating">
-                                                <span class="tg-tourduration">7 Days</span>
-                                                <span class="tg-stars"><span></span></span>
-                                                <em>(3 Review)</em>
+                                                <?php 
+                                                    $start = \Carbon\Carbon::parse($trip->start_at);
+                                                    $end = \Carbon\Carbon::parse($trip->end_at); 
+                                                ?>
+                                                <span class="tg-tourduration">{{ $start->diffInDays($end) }}</span>
+                                                <span class="tg-tourduration tg-availabilty">depart {{ $start->format('d-M-Y') }}</span>
                                             </div>
                                             <div class="tg-pricearea">
-                                                <del>$2,800</del>
-                                                <h4>$2,500</h4>
+                                                <h4>{{ $trip->price }} DA</h4>
                                             </div>
                                         </div>
                                     </div>

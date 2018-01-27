@@ -1,5 +1,16 @@
 @extends('layouts.admindashbord')
 
+@section('style')
+    <style>
+        .tg-dashboardcontent .form-group {
+            width: 100%;
+        }
+        label {
+            display: inline-block;
+        }
+    </style>
+@endsection
+
 @section('dashbord-content')
     <div id="tg-content" class="tg-content">
         <div class="tg-dashboard">
