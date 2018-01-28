@@ -15,7 +15,7 @@ Route::get('/','HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
 
 Route::resource('admin/users', 'UserController');
 
@@ -37,3 +37,6 @@ Route::put('reservations/{id}','ReservationController@update')->name('reservatio
 Route::delete('reservations/{id}','ReservationController@destroy')->name('reservations.destroy');
 
 Route::get('admin','AdminController@index')->name('admindashboard');
+
+Route::get('dashboard/profile','UserController@editprofile')->name('profile');
+Route::put('dashboard/profile/','UserController@updateprofile')->name('profile.update');
