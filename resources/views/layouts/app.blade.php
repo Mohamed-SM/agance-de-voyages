@@ -280,7 +280,7 @@
 							<div class="tg-userbox">
 								<div class="dropdown tg-dropdown">
 									<button class="tg-btndropdown" id="tg-dropdowndashboard" type="button" data-toggle="dropdown">
-										<img src="{{ asset('images/author/img-01.jpg')}}" alt="image description">
+										<img src="/images/avatars/{{ Auth::user()->image ? Auth::user()->image : 'authorimg.jpg'}}" alt="image description" width="35px">
 										<span>{{ Auth::user()->name }}</span>
 										<i class="fa fa-caret-down"></i>
 									</button>

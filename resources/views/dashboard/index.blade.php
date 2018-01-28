@@ -9,17 +9,21 @@
           <a class="tg-btnedit" href="my-profile.html">Edit Profile</a>
         </div>
         <div class="tg-dashboardcontent">
-          <figure><img src="images/authorimg.jpg" alt="image description"></figure>
+          <div class="tg-imgholder">
+            <figure>
+              <img src="/images/avatars/{{ Auth::user()->image ? Auth::user()->image : 'authorimg.jpg'}}" alt="image description" width="87px">
+            </figure>
+          </div>
           <div class="tg-content">
             <ul class="tg-liststyle">
               <li><span>Name</span></li>
-              <li><span>John Smith</span></li>
+              <li><span>{{ Auth::user()->name }}</span></li>
               <li><span>Email Address</span></li>
-              <li><span>John@gmail.com</span></li>
+              <li><span>{{ Auth::user()->email }}</span></li>
               <li><span>Phone</span></li>
-              <li><span>1-800-321-6549</span></li>
+              <li><span>{{ Auth::user()->phone }}</span></li>
               <li><span>Contact Address</span></li>
-              <li><span>Manhattan Hall, Advisor Ltd 1258, Melbourne</span></li>
+              <li><span>{{ Auth::user()->address }}</span></li>
             </ul>
           </div>
         </div>

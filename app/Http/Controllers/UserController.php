@@ -119,13 +119,20 @@ class UserController extends Controller
             $this->validate($request, [
                 'password'=>'required|min:6|confirmed'
             ]);
-            $input = $request->only(['name','email', 'password']); //Retreive the name, email and password fields
+            $input = $request->only(['name','email', 'password','phone','address']); //Retreive the name, email and password fields
         }else{
-            $input = $request->only(['name', 'email']);  //Retreive only the name, email fields
+            $input = $request->only(['name', 'email','phone','address']);  //Retreive only the name, email fields
         }
-        $roles = $request['roles']; //Retreive all roles
+        if ($request['image']) {
+            $getimageName = time().'.'.$request->image->getClientOriginalExtension();
+            $request->image->move(public_path('images/avatars'),$getimageName);    
+            $user->image = $getimageName;
+        }
+        
         $user->fill($input)->save();
-
+        
+        //setting roles
+        $roles = $request['roles']; //Retreive all roles
         if (isset($roles)) {        
             $user->roles()->sync($roles);  //If one or more role is selected associate user to roles          
         }        
