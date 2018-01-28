@@ -1,4 +1,4 @@
-@extends('layouts.admindashbord')
+@extends('layouts.admindashboard')
 
 @section('dashbord-content')
 <div id="tg-content" class="tg-content">
@@ -9,31 +9,27 @@
               <a class="tg-btnedit" href="{{ route('users.create') }}">Ajouté Utilisateur</a>
             </div>
             <div class="tg-dashboardcontent">
-                <div class="">
-                    <table class="table">
+                <div class="tg-content">
+                    <table class="table table-responsive">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Date/Time Added</th>
-                                <th>User Roles</th>
-                                <th>Operations</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Date/Time Added</th>
+                                <th scope="col">User Roles</th>
+                                <th scope="col">Operations</th>
                             </tr>
                         </thead>
                         <tbody>
                                 @foreach ($users as $user)
                                 <tr>
                 
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->created_at->format('F d, Y h:ia') }}</td>
-                                    <td>{{  $user->roles()->pluck('name')->implode(' ') }}</td>{{-- Retrieve array of roles associated to a user and convert to string --}}
-                                    <td>
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id] ]) !!}
-                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
-                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                                    {!! Form::close() !!}
-                
+                                    <td data-title="name"><a href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a></td>
+                                    <td data-title="email"><a href="{{ route('users.show', $user->id) }}">{{ $user->email }}</a></td>
+                                    <td data-title="date">{{ $user->created_at->format('F d, Y h:ia') }}</td>
+                                    <td data-title="roles">{{  $user->roles()->pluck('name')->implode(' ') }}</td>{{-- Retrieve array of roles associated to a user and convert to string --}}
+                                    <td data-title="action">
+                                        <a class="tg-btnview" href="{{ route('users.edit', $user->id) }}">Edit</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -43,5 +39,5 @@
             </div>
           </div>
         </div>
-      </div>
+    </div>
 @endsection

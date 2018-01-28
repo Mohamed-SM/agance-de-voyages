@@ -12,7 +12,7 @@ use Session;
 class ReservationController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+        $this->middleware(['auth', 'clearance']);
     }
     /**
      * Display a listing of the resource.
@@ -20,6 +20,12 @@ class ReservationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        $reservations = Reservation::orderBy('status')->paginate(10);
+        return view('reservations.adminindex',compact('reservations'));
+    }
+
+    public function userindex()
     {
         $reservations = Reservation::where('user_id',Auth::user()->id)->orderBy('status')->get();
         return view('reservations.index',compact('reservations'));

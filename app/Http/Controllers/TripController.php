@@ -11,7 +11,7 @@ use Session;
 class TripController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth', 'clearance'])->except('index', 'show');
+        $this->middleware(['auth', 'clearance']);
     }
 
     /**
@@ -21,7 +21,23 @@ class TripController extends Controller
      */
     public function index()
     {
-         $trips = Trip::orderby('id', 'desc')->paginate(5); //show only 5 items at a time in descending order
+         $trips = Trip::orderby('id', 'desc')->paginate(10); //show only 10 items at a time in descending order
+
+         foreach($trips as $trip){
+             $places_taken = 0;
+             foreach($trip->reservations as $reservation){
+                $places_taken+= $reservation->places;
+             }
+             $trip->places_rest = $trip->places - $places_taken;
+             $trip->places_taken = $places_taken;
+         }
+
+        return view('trips.adminindex', compact('trips'));
+    }
+
+    public function userindex()
+    {
+         $trips = Trip::orderby('id', 'desc')->paginate(9); //show only 9 items at a time in descending order
 
          foreach($trips as $trip){
              $places_taken = 0;
@@ -87,6 +103,19 @@ class TripController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    {
+        $trip = Trip::findOrFail($id); //Find trip of id = $id
+
+        $places_taken = 0;
+        foreach($trip->reservations as $reservation){
+            $places_taken+= $reservation->places;
+        }
+        $trip->places_rest = $trip->places - $places_taken;
+
+        return view ('trips.show', compact('trip'));
+    }
+
+    public function usershow($id)
     {
         $trip = Trip::findOrFail($id); //Find trip of id = $id
 

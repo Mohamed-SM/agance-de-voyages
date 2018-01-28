@@ -1,4 +1,4 @@
-@extends('layouts.admindashbord')
+@extends('layouts.admindashboard')
 
 @section('dashbord-content')
 <div id="tg-content" class="tg-content">

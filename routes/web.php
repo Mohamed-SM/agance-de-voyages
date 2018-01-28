@@ -25,12 +25,15 @@ Route::resource('admin/permissions', 'PermissionController');
 
 Route::resource('admin/trips', 'TripController');
 
-Route::get('trips','TripController@index')->name('trips');
-Route::get('trips/{id}','TripController@show');
+Route::get('trips','TripController@userindex')->name('trips');
+Route::get('trips/{id}','TripController@usershow');
 Route::post('trips/{id}/reservation','ReservationController@store')->name('reservation.store');
 
-Route::get('reservations','ReservationController@index')->name('reservations');
+Route::get('admin/reservations','ReservationController@index')->name('reservations.index');
+Route::get('reservations','ReservationController@userindex')->name('reservations');
 Route::get('reservations/{id}','ReservationController@show')->name('reservations.show');
 Route::get('reservations/{id}/edit','ReservationController@edit')->name('reservations.edit');
 Route::put('reservations/{id}','ReservationController@update')->name('reservations.update');
 Route::delete('reservations/{id}','ReservationController@destroy')->name('reservations.destroy');
+
+Route::get('admin','AdminController@index')->name('admindashboard');

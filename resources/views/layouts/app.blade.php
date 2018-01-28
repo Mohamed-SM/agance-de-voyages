@@ -286,7 +286,10 @@
 									</button>
 									<ul class="dropdown-menu tg-dropdownusermenu" aria-labelledby="tg-dropdowndashboard">
 										<li><a href="{{route('dashboard')}}">Dashboard</a></li>
-										<li><a href="dashboard.html">Edit Profile</a></li>
+										@role('Admin')
+										<li><a href="{{route('admindashboard')}}">Admin Dashboard</a></li>
+										@endrole
+										
 										<li>
 										<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Logout

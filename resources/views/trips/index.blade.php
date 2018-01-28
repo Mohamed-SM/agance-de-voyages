@@ -33,25 +33,21 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="row">
+                        <?php $counter = 0; ?>
                         @foreach ($trips as $trip)
                             <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                                 <div class="tg-populartour">
                                     @include('trips.item',$trip)
                                 </div>
                             </div>
+                        @if (++$counter % 3 === 0)
+                        </div>
+                        <div class="row">
+                        @endif
                         @endforeach
                         </div>
                         <div class="clearfix"></div>
-                        <nav class="tg-pagination">
-                                {!! $trips->links() !!}
-                            <ul>
-                                <li class="tg-active"><a href="javascript:void(0);">1</a></li>
-                                <li><a href="javascript:void(0);">2</a></li>
-                                <li><a href="javascript:void(0);">3</a></li>
-                                <li><a href="javascript:void(0);">4</a></li>
-                                <li class="tg-nextpage"><a href="javascript:void(0);"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </nav>
+                        {!! $trips->links('layouts.links') !!}
                     </div>
                 </div>
             </div>
