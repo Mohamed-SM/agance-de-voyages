@@ -1,4 +1,4 @@
-@extends('layouts.admindashboard')
+@extends('layouts.dashboard')
 
 @section('style')
     <style>
@@ -16,17 +16,17 @@
         <div class="tg-dashboard">
             <div class="tg-box tg-ediprofile">
                 <div class="tg-heading">
-                    <h3>Modifer {{$user->name}}</h3>
+                    <h3>Modifer {{Auth::user()->name}}</h3>
                 </div>
                 <div class="tg-dashboardcontent">
                     <div class="tg-imgholder">
                         <figure>
-                            <img src="/images/avatars/{{ $user->image ? $user->image : 'authorimg.jpg'}}" id="output" alt="image description" width="100%">
+                            <img src="/images/avatars/{{ Auth::user()->image ? Auth::user()->image : 'authorimg.jpg'}}" id="output" alt="image description" width="100%">
                         </figure>
                         <a class="tg-btn" href="#" onclick="event.preventDefault();loadfile();">Change Profile Picture</a>
                     </div>
                     <div class="tg-content">
-                    {{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT' ,'files' => true)) }}{{-- Form model binding to automatically populate our fields with user data --}}
+                    {{ Form::model(Auth::user(), array('route' =>'profile.update', 'method' => 'PUT' ,'files' => true)) }}{{-- Form model binding to automatically populate our fields with user data --}}
                         <fieldset>
                             <div class="form-group">
                                 {{ Form::label('name', 'Name') }}
@@ -46,21 +46,11 @@
                                 {{ Form::label('address', 'Address') }}
                                 {{ Form::textarea('address', null, array('class' => 'form-control')) }}
                             </div>
-                        
-                            <p></p>
-                            <h5><b style="padding: 10px;">Give Role</b></h5>
-                            <p></p>
-                            <div class='form-group'>
-                                @foreach ($roles as $role)
-                                    {{ Form::checkbox('roles[]',  $role->id, $user->roles ) }}
-                                    {{ Form::label($role->name, ucfirst($role->name)) }}<br>
-                        
-                                @endforeach
-                            </div>
-
-                            <h5><b style="padding: 10px;">Changer Mot De pass</b></h5>
-                            <p style="padding: 10px;">lesser les chaps vide pour ne pas modifer le mot de pass</p>
                             
+                            <p></p>
+                            <h5><b style="padding: 10px;">Changer Mot De pass</b></h5>
+                            <p style="padding: 10px;">lesser les chaps vide pour ne pas modifer le mot de pass </p>
+                        
                             <div class="form-group">
                                 {{ Form::label('password', 'Password') }}<br>
                                 {{ Form::password('password', array('class' => 'form-control')) }}
