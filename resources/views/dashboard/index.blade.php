@@ -21,9 +21,9 @@
               <li><span>Email Address</span></li>
               <li><span>{{ Auth::user()->email }}</span></li>
               <li><span>Phone</span></li>
-              <li><span>{{ Auth::user()->phone }}</span></li>
+              <li><span>{{ Auth::user()->phone ? Auth::user()->phone : '---'}}</span></li>
               <li><span>Contact Address</span></li>
-              <li><span>{{ Auth::user()->address }}</span></li>
+              <li><span>{{ Auth::user()->address ? Auth::user()->address : '---' }}</span></li>
             </ul>
           </div>
         </div>
