@@ -44,7 +44,7 @@
                                     <a class="tg-btnview" href="{{ route('reservations.show',$reservation->id) }}">Voir</a>
                                     @if ($reservation->status == 0)
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['reservations.destroy', $reservation->id],'id' => 'delete-form'.$reservation->id ]) !!}
-                                    <a class="tg-btnview" href="{{ route('reservations.edit',$reservation->id) }}">Modifer</a>
+                                    <a class="tg-btnview" href="{{ route('admin.reservations.edit',$reservation->id) }}">Modifer</a>
                                     <a class="tg-btnview" href="reservation/delete" onclick="event.preventDefault(); document.getElementById('delete-form{{ $reservation->id  }}').submit();">Anuler</a>
                                     {!! Form::close() !!}
                                     @endif
