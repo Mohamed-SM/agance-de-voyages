@@ -34,6 +34,8 @@ Route::get('reservations','ReservationController@userindex')->name('reservations
 Route::get('reservations/{id}','ReservationController@show')->name('reservations.show');
 Route::get('reservations/{id}/edit','ReservationController@edit')->name('reservations.edit');
 Route::put('reservations/{id}','ReservationController@update')->name('reservations.update');
+Route::get('admin/reservations/{id}/edit','ReservationController@adminedit')->name('admin.reservations.edit');
+Route::put('admin/reservations/{id}','ReservationController@adminupdate')->name('admin.reservations.update');
 Route::delete('reservations/{id}','ReservationController@destroy')->name('reservations.destroy');
 
 Route::get('admin','AdminController@index')->name('admindashboard');

@@ -21,13 +21,13 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::orderBy('status')->paginate(10);
+        $reservations = Reservation::orderBy('created_at', 'asc')->paginate(10);
         return view('reservations.adminindex',compact('reservations'));
     }
 
     public function userindex()
     {
-        $reservations = Reservation::where('user_id',Auth::user()->id)->orderBy('status')->get();
+        $reservations = Reservation::where('user_id',Auth::user()->id)->orderBy('created_at', 'asc')->get();
         return view('reservations.index',compact('reservations'));
     }
 
@@ -99,6 +99,22 @@ class ReservationController extends Controller
         return view('reservations.edit',compact('reservation'));
     }
 
+    public function adminedit($id)
+    {
+        $reservation = Reservation::find($id);
+        if($reservation->status){
+            redirect()->route('reservations.show',$reservation->id)
+        ->with('flash_message', 'reservation non modifiable pour le mement');
+        }
+        $places_taken = 0;
+        foreach($reservation->trip->reservations as $res){
+            $places_taken+= $res->places;
+        }
+        $reservation->places_rest = $reservation->trip->places - $places_taken + $reservation->places;
+        
+        return view('reservations.adminedit',compact('reservation'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -116,6 +132,19 @@ class ReservationController extends Controller
         $reservation->save();
 
         return redirect()->route('reservations.show',$reservation->id)
+        ->with('flash_message', 'Reservations modifer ');
+    }
+
+    public function adminupdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'status' =>'required|numeric|min:0|max:3',
+        ]);
+        $reservation = Reservation::find($id);
+        $reservation->status = $request['status'];
+        $reservation->save();
+
+        return redirect()->route('admin.reservations.edit',$reservation->id)
         ->with('flash_message', 'Reservations modifer ');
     }
 

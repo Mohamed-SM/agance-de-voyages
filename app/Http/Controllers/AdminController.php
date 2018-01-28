@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Trip;
+use App\Reservation;
 
 class AdminController extends Controller
 {
@@ -16,7 +19,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admindashboard.index');
+        $data = [ 
+            'trips' => Trip::all()->count(),
+            'reservations' => Reservation::all()->count(),
+            'users'=>User::all()->count()
+        ];
+        return view('admindashboard.index',compact('data'));
     }
 
     /**
