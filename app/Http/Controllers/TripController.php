@@ -11,7 +11,10 @@ use Session;
 class TripController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth', 'clearance']);
+        $this->middleware(['auth'])->except(['userindex','usershow']);
+        if(Auth::user())
+        $this->middleware(['clearance']);
+
     }
 
     /**

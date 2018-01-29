@@ -15,18 +15,18 @@ class ClearanceMiddleware {
      */
     public function handle($request, Closure $next) {        
         if (Auth::user()->hasPermissionTo('Administer roles & permissions')) //If user has this //permission
-    {
+        {
             return $next($request);
         }
 
         if ($request->is('admin/*'))//If user is creating a Trip
-         {
-            if (!Auth::user()->hasPermissionTo('Administer roles & permissions'))
         {
+            if (!Auth::user()->hasPermissionTo('Administer roles & permissions'))
+            {
                 abort('401');
             }  
-         else 
-         {
+            else 
+            {
                 return $next($request);
             }
         }
